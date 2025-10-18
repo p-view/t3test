@@ -1,0 +1,15 @@
+# TYPO3 specific files
+/web/typo3conf/LocalConfiguration.php
+/web/typo3conf/PackageStates.php
+/web/typo3conf/AdditionalConfiguration.php
+/web/typo3temp/
+/web/uploads/
+/web/fileadmin/_temp_/
+/web/fileadmin/_processed_/
+/var/
+/vendor/
+composer.lock
+
+# System files
+.DS_Store
+Thumbs.db
