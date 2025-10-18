@@ -1,0 +1,77 @@
+{
+    "name": "p-view/t3test",
+    "description": "TYPO3 13 Test Project with DDEV",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": "^8.2",
+        "typo3/cms-core": "^13.4",
+        "typo3/cms-backend": "^13.4",
+        "typo3/cms-frontend": "^13.4",
+        "typo3/cms-install": "^13.4",
+        "typo3/cms-recordlist": "^13.4",
+        "typo3/cms-fluid": "^13.4",
+        "typo3/cms-fluid-styled-content": "^13.4",
+        "typo3/cms-extbase": "^13.4",
+        "typo3/cms-extensionmanager": "^13.4",
+        "typo3/cms-setup": "^13.4",
+        "typo3/cms-rte-ckeditor": "^13.4",
+        "typo3/cms-redirects": "^13.4",
+        "typo3/cms-seo": "^13.4",
+        "typo3/cms-adminpanel": "^13.4",
+        "typo3/cms-dashboard": "^13.4",
+        "typo3/cms-tstemplate": "^13.4",
+        "typo3/cms-info": "^13.4",
+        "typo3/cms-linkvalidator": "^13.4",
+        "typo3/cms-recycler": "^13.4",
+        "typo3/cms-reports": "^13.4",
+        "typo3/cms-sys-note": "^13.4",
+        "typo3/cms-t3editor": "^13.4",
+        "typo3/cms-viewpage": "^13.4",
+        "typo3/cms-lowlevel": "^13.4",
+        "typo3/cms-filelist": "^13.4",
+        "typo3/cms-impexp": "^13.4",
+        "typo3/cms-form": "^13.4",
+        "typo3/cms-beuser": "^13.4",
+        "typo3/cms-workspaces": "^13.4"
+    },
+    "require-dev": {
+        "typo3/testing-framework": "^8.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/phpstan": "^1.0",
+        "phpunit/phpunit": "^10.0 || ^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "P\\View\\T3test\\": "packages/t3test/Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "P\\View\\T3test\\Tests\\": "packages/t3test/Tests/"
+        }
+    },
+    "config": {
+        "vendor-dir": "vendor",
+        "bin-dir": "vendor/bin",
+        "allow-plugins": {
+            "typo3/cms-composer-installers": true,
+            "typo3/class-alias-loader": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "typo3/cms": {
+            "web-dir": "public",
+            "app-dir": "var",
+            "config-dir": "config"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "TYPO3\\CMS\\Composer\\Plugin\\Core\\InstallerScript::postAutoloadDump"
+        ]
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

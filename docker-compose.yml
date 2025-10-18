@@ -1,0 +1,51 @@
+services:
+  web:
+    image: php:8.2-apache
+    container_name: typo3_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    depends_on:
+      - db
+    command: >
+      bash -c "
+        apt-get update && 
+        apt-get install -y libzip-dev libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libxml2-dev libxslt-dev && 
+        docker-php-ext-configure gd --with-freetype --with-jpeg && 
+        docker-php-ext-install zip gd pdo pdo_mysql intl soap xsl opcache && 
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && 
+        a2enmod rewrite && 
+        sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf && 
+        apache2-foreground
+      "
+
+  db:
+    image: mariadb:10.11
+    container_name: typo3_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: typo3
+      MYSQL_USER: typo3
+      MYSQL_PASSWORD: typo3
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: typo3_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: typo3
+      PMA_PASSWORD: typo3
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
